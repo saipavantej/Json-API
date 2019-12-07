@@ -6,6 +6,9 @@
     var male = 0;
     var female = 0;
     var transgen = 0;
+    var maleInFrance = 0;
+    var femaleInFrance = 0;
+    var transgenInFrance = 0;
     var a = document.getElementById('male');
     var b = document.getElementById('female');
     var c = document.getElementById('transgen');
@@ -17,6 +20,7 @@
 
             data.results.forEach(function(person) {
                 console.log(person.gender);
+                console.log(person.location.country);
                 if (person.gender == "male")
 
                     male++;
@@ -25,10 +29,25 @@
                 } else {
                     transgen++;
                 }
+
+                if (person.location.country == "France" && person.gender == "male") {
+
+                    maleInFrance++;
+                } else if (person.location.country == "France" && person.gender == "female") {
+                    femaleInFrance++;
+
+                } else if (person.location.country == "France" && person.gender == "transgender") {
+
+                    transgenInFrance++;
+                }
             })
             console.log("total number of male is " + male + " out of " + data.results.length);
             console.log("total number of female is " + female + " out of " + data.results.length);
             console.log("total number of transgender is " + transgen + " out of " + data.results.length);
+            console.log("number of male is france " + maleInFrance + " out of " + data.results.length);
+            console.log("number of female is france " + femaleInFrance + " out of " + data.results.length);
+            console.log("number of transgender is france " + transgenInFrance + " out of " + data.results.length);
+
             a.textContent = male;
             b.textContent = female;
             c.textContent = transgen;
