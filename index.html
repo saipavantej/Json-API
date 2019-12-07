@@ -9,6 +9,9 @@
     var maleInFrance = 0;
     var femaleInFrance = 0;
     var transgenInFrance = 0;
+    var namesMale = [];
+    var namesFemale = [];
+    var namesTransgender = [];
     var a = document.getElementById('male');
     var b = document.getElementById('female');
     var c = document.getElementById('transgen');
@@ -31,12 +34,17 @@
                 }
 
                 if (person.location.country == "France" && person.gender == "male") {
-
+                    console.log(person.name.first);
+                    namesMale.push(person.name.first);
                     maleInFrance++;
                 } else if (person.location.country == "France" && person.gender == "female") {
+                    console.log(person.name.first);
+                    namesFemale.push(person.name.first);
                     femaleInFrance++;
 
                 } else if (person.location.country == "France" && person.gender == "transgender") {
+                    namesTransgender.push(person.name.first);
+                    console.log(person.name.first);
 
                     transgenInFrance++;
                 }
@@ -44,9 +52,9 @@
             console.log("total number of male is " + male + " out of " + data.results.length);
             console.log("total number of female is " + female + " out of " + data.results.length);
             console.log("total number of transgender is " + transgen + " out of " + data.results.length);
-            console.log("number of male is france " + maleInFrance + " out of " + data.results.length);
-            console.log("number of female is france " + femaleInFrance + " out of " + data.results.length);
-            console.log("number of transgender is france " + transgenInFrance + " out of " + data.results.length);
+            console.log("number of male is france " + maleInFrance + " out of " + data.results.length + "\nTheir Names are " + namesMale);
+            console.log("number of female is france " + femaleInFrance + " out of " + data.results.length + "\nTheir Names are " + namesFemale);
+            console.log("number of transgender is france " + transgenInFrance + " out of " + data.results.length + "\nTheir Names are " + namesTransgender);
 
             a.textContent = male;
             b.textContent = female;
