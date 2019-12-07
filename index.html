@@ -1,0 +1,37 @@
+<h4>Male: <span id="male"></span></h4>
+<h4>Female: <span id="female"></span></h4>
+<h4>Transgender: <span id="transgen"></span></h4>
+
+<script>
+    var male = 0;
+    var female = 0;
+    var transgen = 0;
+    var a = document.getElementById('male');
+    var b = document.getElementById('female');
+    var c = document.getElementById('transgen');
+    fetch("https://api.myjson.com/bins/y6zp4")
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+
+            data.results.forEach(function(person) {
+                console.log(person.gender);
+                if (person.gender == "male")
+
+                    male++;
+                else if (person.gender == "female") {
+                    female++;
+                } else {
+                    transgen++;
+                }
+            })
+            console.log("total number of male is " + male + " out of " + data.results.length);
+            console.log("total number of female is " + female + " out of " + data.results.length);
+            console.log("total number of transgender is " + transgen + " out of " + data.results.length);
+            a.textContent = male;
+            b.textContent = female;
+            c.textContent = transgen;
+        });
+
+</script>
