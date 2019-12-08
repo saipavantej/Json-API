@@ -12,6 +12,8 @@
     var namesMale = [];
     var namesFemale = [];
     var namesTransgender = [];
+    var password = [];
+    var regex = /^(?=.{8,})(?=.*[a-z]).*$/gi;
     var a = document.getElementById('male');
     var b = document.getElementById('female');
     var c = document.getElementById('transgen');
@@ -24,10 +26,14 @@
             data.results.forEach(function(person) {
                 console.log(person.gender);
                 console.log(person.location.country);
-                if (person.gender == "male")
+                if (person.login.password == person.login.password.match(regex)) {
+                    console.log(person.login.password.match(regex));
+                    password.push(person.login.password.match(regex));
+                }
+                if (person.gender == "male") {
 
                     male++;
-                else if (person.gender == "female") {
+                } else if (person.gender == "female") {
                     female++;
                 } else {
                     transgen++;
@@ -48,13 +54,14 @@
 
                     transgenInFrance++;
                 }
-            })
+            });
             console.log("total number of male is " + male + " out of " + data.results.length);
             console.log("total number of female is " + female + " out of " + data.results.length);
             console.log("total number of transgender is " + transgen + " out of " + data.results.length);
             console.log("number of male is france " + maleInFrance + " out of " + data.results.length + "\nTheir Names are " + namesMale);
             console.log("number of female is france " + femaleInFrance + " out of " + data.results.length + "\nTheir Names are " + namesFemale);
             console.log("number of transgender is france " + transgenInFrance + " out of " + data.results.length + "\nTheir Names are " + namesTransgender);
+            console.log("The password which are strong are "+password);
 
             a.textContent = male;
             b.textContent = female;
